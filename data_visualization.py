@@ -4,21 +4,17 @@ import seaborn as sns
 import numpy as np
 from pymongo import MongoClient
 
-# Connect to MongoDB and fetch data
-# If you still have connection issues, you can comment out this part and load directly from CSV
 try:
     client = MongoClient('mongodb://localhost:27017/')
     db = client['apex_reviews']
     collection = db['reviews']
     
-    # Convert MongoDB collection to DataFrame
     cursor = collection.find({})
     df = pd.DataFrame(list(cursor))
     print("Successfully loaded data from MongoDB")
 except Exception as e:
     print(f"Failed to connect to MongoDB: {e}")
     print("Loading from CSV file instead...")
-    # Load from CSV as fallback
     df = pd.read_csv('apex_reviews_structured.csv')
 
 # Print the shape and first few rows

@@ -3,7 +3,6 @@ import json
 import time
 import re
 
-# Function to detect English text - moved to the beginning
 def is_english(text):
     english_pattern = re.compile(r'^[a-zA-Z0-9\s\.,!?\'\"()-_:;]+$')
     words = text.split()
@@ -33,7 +32,6 @@ for page in range(max_pages):
         try:
             data = response.json()
            
-            # Print some debug info about the response
             total_reviews = data.get("query_summary", {}).get("total_reviews", 0)
             print(f"Total reviews according to query summary: {total_reviews}")
            
@@ -47,14 +45,12 @@ for page in range(max_pages):
             english_reviews = []
             for review in reviews:
                 review_text = review.get("review", "")
-                # Check if review is in English
                 if review_text and is_english(review_text):
                     english_reviews.append(review)
             
             all_reviews.extend(english_reviews)
             print(f"Fetched {len(english_reviews)} English reviews out of {len(reviews)}. Total collected: {len(all_reviews)}")
            
-            # Get cursor for next page
             cursor = data.get("cursor", "")
             print(f"Next cursor: {cursor}")
            
@@ -62,7 +58,6 @@ for page in range(max_pages):
                 print("No cursor for next page.")
                 break
                
-            # Add a short delay to avoid rate limiting
             time.sleep(2)
            
         except json.JSONDecodeError as e:
