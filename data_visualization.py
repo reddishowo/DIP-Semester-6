@@ -41,7 +41,8 @@ plt.title('Distribution of Review Sentiment', fontsize=14)
 plt.subplot(2, 2, 2)
 # Filter out rows with missing hours_played
 hours_data = df.dropna(subset=['hours_played'])
-sns.scatterplot(x='hours_played', y='sentiment_compound', data=hours_data, hue='sentiment', palette={'positive': 'green', 'negative': 'red'})
+sns.scatterplot(x='hours_played', y='sentiment_compound', data=hours_data, hue='sentiment', 
+                palette={'positive': 'green', 'negative': 'red', 'neutral': 'gray'})
 plt.title('Sentiment Score vs. Hours Played', fontsize=14)
 plt.xlabel('Hours Played')
 plt.ylabel('Sentiment Compound Score')
