@@ -29,12 +29,8 @@ all_reviews = []
 max_scroll_attempts = 100  # Jumlah maksimum percobaan scroll
 min_new_reviews = 3  # Berhenti jika kurang dari ini ditemukan dalam percobaan scroll
 
-# Set up Selenium dengan Firefox
 firefox_options = Options()
-# Hilangkan komentar pada headless mode jika tidak ingin melihat browser
-# firefox_options.add_argument("--headless")
 firefox_options.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0")
-
 driver = webdriver.Firefox(options=firefox_options)
 
 try:
